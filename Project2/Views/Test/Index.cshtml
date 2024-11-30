@@ -1,0 +1,363 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIQYU HEALTH B2B PRICE LIST FINDER FOR INTERNAL USE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #4CAF50;
+            font-size: 24px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 22px;
+            margin-top: 20px;
+        }
+
+        .dropdown-container {
+            position: relative;
+            width: 60%;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .dropdown-btn {
+            width: 200px;
+            height: 30px;
+            padding: 4px 8px;
+            font-size: 12px;
+            text-align: left;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            max-height: 250px;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .dropdown-content table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .dropdown-content th, .dropdown-content td {
+                padding: 8px;
+                text-align: left;
+                border: 1px solid #ccc;
+                font-size: 12px;
+            }
+
+            .dropdown-content tr:hover {
+                background-color: #f2f2f2;
+                cursor: pointer;
+            }
+
+            .dropdown-content input {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                margin-bottom: 8px;
+                border-radius: 4px;
+                font-size: 12px;
+                box-sizing: border-box;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn-reset, .btn-submit {
+            padding: 10px 16px;
+            cursor: pointer;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .btn-reset {
+            background-color: #f44336;
+        }
+
+        .btn-submit {
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h2>PIQYU HEALTH B2B PRICE LIST FINDER FOR INTERNAL USE</h2>
+    <h1>SELECT DIAGNOSTIC TEST</h1>
+
+    <!-- Custom Dropdown -->
+    <div class="dropdown-container">
+        <input type="text" id="dropdownSearch" placeholder="Search for a test..." onkeyup="filterDropdown()" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+
+        <div class="dropdown-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sl No</th>
+                        <th>Code</th>
+                        <th>Test Name</th>
+                        <th>MRP</th>
+                        <th>B2C Price</th>
+                        <th>LAB B2B</th>
+                    </tr>
+                </thead>
+                <tbody id="dropdownTable">
+                    <tr onclick="selectTest(17, 'H10P', 'ACBC- COMPLETE BLOOD PICTURE', 250, 200, 70)">
+                        <td>17</td>
+                        <td>H10P</td>
+                        <td>ACBC- COMPLETE BLOOD PICTURE</td>
+                        <td>250</td>
+                        <td>200</td>
+                        <td>70</td>
+                    </tr>
+                    <tr onclick="selectTest(74, 'M09', 'Anaerobic Blood Culture', 1100, 880, 485)">
+                        <td>74</td>
+                        <td>M09</td>
+                        <td>Anaerobic Blood Culture</td>
+                        <td>1100</td>
+                        <td>880</td>
+                        <td>485</td>
+                    </tr>
+                    <tr onclick="selectTest(127, 'C188', 'BCR-ABL Quantitative(PCR)', 7000, 5600, 4320)">
+                        <td>127</td>
+                        <td>C188-</td>
+                        <td>BCR-ABL Quantitative(PCR)</td>
+                        <td>7000</td>
+                        <td>5600</td>
+                        <td>4320</td>
+                    </tr>
+                    <tr onclick="selectTest(128, 'MB01', 'BCR-ABL(9:22)Qualitative', 4000, 3200, 2700)">
+                        <td>128</td>
+                        <td>MB01</td>
+                        <td>BCR-ABL(9:22)Qualitative</td>
+                        <td>4000</td>
+                        <td>3200</td>
+                        <td>2700</td>
+                    </tr>
+                    <tr onclick="selectTest(129, 'MB02', 'BCR-ABL(9:22)Quantitative', 6000, 4800, 3700)">
+                        <td>129</td>
+                        <td>MB02</td>
+                        <td>BCR-ABL(9:22)Quantitative</td>
+                        <td>6000</td>
+                        <td>4800</td>
+                        <td>3700</td>
+                    </tr>
+                    <tr onclick="selectTest(158, 'H66', 'Bleeding Time-Clotting Time(BT-CT)', 150, 120, 80)">
+                        <td>158</td>
+                        <td>H66</td>
+                        <td>Bleeding Time-Clotting Time(BT-CT)</td>
+                        <td>150</td>
+                        <td>120</td>
+                        <td>80</td>
+                    </tr>
+                    <tr onclick="selectTest(159, 'H05', 'Bleeding Time', 150, 120, 80)">
+                        <td>159</td>
+                        <td>H05</td>
+                        <td>Bleeding Time</td>
+                        <td>150</td>
+                        <td>120</td>
+                         <td>80</td>
+                    </tr>
+                    <tr onclick="selectTest(160, 'H06', 'Blood Grouping(A,B,O) and Rh factor', 150, 120, 45)">
+                        <td>160</td>
+                        <td>H06</td>
+                        <td>Blood Grouping(A,B,O) and Rh factor</td>
+                        <td>150</td>
+                        <td>120</td>
+                        <td>45</td>
+                    </tr>
+                    <tr onclick="selectTest(161, 'BC060', 'Blood Urea Nitrogen/Creatinine Ratio', 200, 160, 65)">
+                        <td>161</td>
+                        <td>BC060</td>
+                        <td>Blood Urea Nitrogen/Creatinine Ratio</td>
+                        <td>200</td>
+                        <td>160</td>
+                        <td>65</td>
+                    </tr>
+                    <tr onclick="selectTest(187, 'H10', 'CBC-Complte Blood Count', 150, 120, 55)">
+                        <td>187</td>
+                        <td>H10</td>
+                        <td>CBC-Complte Blood Count</td>
+                        <td>150</td>
+                        <td>120</td>
+                        <td>55</td>
+                    </tr>
+                    <tr onclick="selectTest(188, 'H10P', 'CBC-Complte Blood Picture', 250, 200, 70)">
+                        <td>188</td>
+                        <td>H10P</td>
+                        <td>CBC-Complte Blood Picture</td>
+                        <td>250</td>
+                        <td>220</td>
+                        <td>70 </td>
+                    </tr>
+                    <!-- More rows -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Selected Tests Table -->
+    <div id="selectedTestsContainer" style="display: none;">
+        <h3>SELECTED TESTS</h3>
+        <table id="selectedTestsTable">
+            <thead>
+                <tr>
+                    <th>Sl No</th>
+                    <th>Code</th>
+                    <th>Test Name</th>
+                    <th>MRP</th>
+                    <th>B2C Price</th>
+                    <th>LAB B2B</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows for selected tests will be added here -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"><strong>Total Amount</strong></td>
+                    <td id="totalMRP">0</td>
+                    <td id="totalB2C">0</td>
+                    <td id="totalB2B">0</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <!-- Reset and Submit Buttons -->
+    <button type="reset" class="btn-reset" onclick="resetSelection()">Reset</button>
+    <button type="button" class="btn-submit" onclick="submitSelection()">Submit</button>
+
+    <script>
+        let selectedTests = [];
+        let totalMRP = 0;
+        let totalB2C = 0;
+        let totalB2B = 0;
+
+        function selectTest(slNo, code, testName, mrp, b2cPrice, labB2b) {
+            if (selectedTests.some(test => test.slNo === slNo)) {
+                alert("This test is already selected.");
+                return;
+            }
+
+            const selectedTest = { slNo, code, testName, mrp, b2cPrice, labB2b };
+            selectedTests.push(selectedTest);
+
+            // Update totals
+            totalMRP += mrp;
+            totalB2C += b2cPrice;
+            totalB2B += labB2b;
+
+            displaySelectedTests();
+            document.querySelector('.dropdown-content').style.display = 'none';
+        }
+
+        function displaySelectedTests() {
+            const tableBody = document.getElementById('selectedTestsTable').querySelector('tbody');
+            tableBody.innerHTML = '';
+
+            selectedTests.forEach(test => {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                            <td>${test.slNo}</td>
+                            <td>${test.code}</td>
+                            <td>${test.testName}</td>
+                            <td>${test.mrp}</td>
+                            <td>${test.b2cPrice}</td>
+                            <td>${test.labB2b}</td>
+                        `;
+                tableBody.appendChild(newRow);
+            });
+
+            // Update total row
+            document.getElementById('totalMRP').textContent = totalMRP;
+            document.getElementById('totalB2C').textContent = totalB2C;
+            document.getElementById('totalB2B').textContent = totalB2B;
+
+            document.getElementById('selectedTestsContainer').style.display = 'block';
+        }
+
+        function resetSelection() {
+            selectedTests = [];
+            totalMRP = 0;
+            totalB2C = 0;
+            totalB2B = 0;
+
+            const tableBody = document.getElementById('selectedTestsTable').querySelector('tbody');
+            tableBody.innerHTML = '';
+            document.getElementById('selectedTestsContainer').style.display = 'none';
+        }
+
+        function submitSelection() {
+            if (selectedTests.length === 0) {
+                alert("No tests selected.");
+                return;
+            }
+
+            console.log("Selected Tests Submitted:", selectedTests);
+            alert("Tests have been submitted successfully!");
+
+            resetSelection();
+        }
+
+        function filterDropdown() {
+            const searchInput = document.getElementById("dropdownSearch").value.toLowerCase();
+            const tableRows = document.querySelectorAll("#dropdownTable tr");
+
+            tableRows.forEach(row => {
+                const testName = row.cells[2].textContent.toLowerCase();
+                const code = row.cells[1].textContent.toLowerCase();
+
+                if (testName.includes(searchInput) || code.includes(searchInput)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+
+            const dropdown = document.querySelector('.dropdown-content');
+            dropdown.style.display = searchInput.length > 0 ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
